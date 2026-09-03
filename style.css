@@ -1,0 +1,851 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #080808;
+    --card: #111113;
+    --purple: #a855f7;
+    --light-purple: #c084fc;
+    --white: #f5f5f5;
+    --gray: #8b8b8b;
+    --dark-gray: #202020;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: "Manrope", sans-serif;
+}
+
+/* =========================
+   BACKGROUND GRID
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(168, 85, 247, 0.04) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(168, 85, 247, 0.04) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+}
+
+
+/* =========================
+   PAGE SYSTEM
+========================= */
+
+.page {
+    display: none;
+
+    width: 100%;
+    height: 100vh;
+
+    position: relative;
+    z-index: 2;
+}
+
+.page.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================
+   OPENING PAGE
+========================= */
+
+.opening {
+    width: 90%;
+    max-width: 900px;
+
+    text-align: center;
+
+    animation: fadeUp 1s ease;
+}
+
+.top-line,
+.file-number,
+.section-number {
+    font-family: "DM Mono", monospace;
+
+    color: var(--gray);
+
+    letter-spacing: 3px;
+
+    font-size: 13px;
+}
+
+.opening h1 {
+    font-size: clamp(55px, 11vw, 130px);
+
+    line-height: 0.9;
+
+    letter-spacing: -5px;
+
+    margin: 30px 0 20px;
+
+    font-weight: 800;
+}
+
+.file-number {
+    color: var(--purple);
+}
+
+.bike-line {
+    font-size: 55px;
+
+    margin: 25px 0;
+
+    filter:
+        drop-shadow(
+            0 0 15px rgba(168, 85, 247, 0.5)
+        );
+}
+
+.small-text {
+    font-family: "DM Mono", monospace;
+
+    color: #777;
+
+    letter-spacing: 2px;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   MAIN BUTTON
+========================= */
+
+.main-btn,
+.celebrate-btn {
+
+    margin-top: 40px;
+
+    padding: 16px 30px;
+
+    background: transparent;
+
+    color: white;
+
+    border: 1px solid var(--purple);
+
+    font-family: "DM Mono", monospace;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.main-btn:hover,
+.celebrate-btn:hover {
+
+    background: var(--purple);
+
+    box-shadow:
+        0 0 35px rgba(168, 85, 247, 0.5);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   PARTY PAGE
+========================= */
+
+.party-page {
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(168, 85, 247, 0.18),
+            transparent 45%
+        );
+}
+
+.party-content {
+
+    text-align: center;
+
+    animation: partyIn 0.8s ease;
+}
+
+.party-content h1 {
+
+    font-size: clamp(40px, 7vw, 85px);
+
+    line-height: 0.95;
+
+    margin: 25px 0;
+
+    letter-spacing: -3px;
+}
+
+.party-content h1 span {
+
+    color: var(--purple);
+}
+
+.party-warning {
+
+    color: #999;
+}
+
+.party-emojis {
+
+    font-size: 35px;
+
+    margin-top: 35px;
+
+    letter-spacing: 6px;
+
+    animation:
+        emojiFloat 2s infinite ease-in-out;
+}
+
+
+/* =========================
+   GENERAL CONTENT
+========================= */
+
+.content {
+
+    width: 88%;
+
+    max-width: 950px;
+
+    animation: fadeUp 0.7s ease;
+}
+
+.content h2 {
+
+    font-size: clamp(40px, 7vw, 80px);
+
+    margin: 15px 0 45px;
+
+    letter-spacing: -3px;
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-box {
+
+    border-left: 1px solid var(--purple);
+
+    padding: 10px 30px;
+
+    background:
+        rgba(255, 255, 255, 0.02);
+}
+
+.profile-box p {
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #222;
+
+    font-family: "DM Mono", monospace;
+}
+
+.profile-box p:last-child {
+
+    border-bottom: none;
+}
+
+.profile-box span {
+
+    display: inline-block;
+
+    width: 150px;
+
+    color: var(--purple);
+}
+
+
+/* =========================
+   CHILDHOOD IMAGE
+   DO NOT CHANGE POSITION
+========================= */
+
+.childhood-photo {
+
+    width: 280px;
+
+    border: 1px solid #a855f7;
+
+    background: #111113;
+
+    overflow: hidden;
+
+    margin-bottom: 20px;
+}
+
+.childhood-photo img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 300px;
+
+    object-fit: contain;
+
+    background: #111113;
+
+    transition: 0.5s ease;
+}
+
+.description {
+
+    color: var(--gray);
+
+    line-height: 1.8;
+}
+
+.caption-small {
+
+    margin-top: 8px;
+
+    color: var(--light-purple);
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   RECENT PHOTOS
+   DO NOT CHANGE POSITION
+========================= */
+
+.photo-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.photo-card {
+
+    height: 380px;
+
+    overflow: hidden;
+
+    border: 1px solid #292929;
+
+    background: #111;
+}
+
+.photo-card img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: 0.5s ease;
+}
+
+.photo-card:hover img {
+
+    transform: scale(1.05);
+}
+
+.recent-caption {
+
+    margin-top: 15px;
+
+    color: #777;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   MESSAGE BOX
+========================= */
+
+.message-box,
+.big-message {
+
+    max-width: 800px;
+
+    color: #aaa;
+
+    font-size: 18px;
+
+    line-height: 1.9;
+}
+
+.message-box p,
+.big-message p {
+
+    margin-bottom: 25px;
+}
+
+.big-message strong {
+
+    color: var(--light-purple);
+}
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills {
+
+    max-width: 750px;
+}
+
+.skill {
+
+    margin-bottom: 27px;
+}
+
+.skill-title {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 13px;
+}
+
+.skill-title b {
+
+    color: var(--purple);
+}
+
+.bar {
+
+    height: 5px;
+
+    background: #202020;
+}
+
+.bar i {
+
+    display: block;
+
+    height: 100%;
+
+    background: var(--purple);
+
+    box-shadow:
+        0 0 12px rgba(168, 85, 247, 0.7);
+}
+
+
+/* =========================
+   UNIQUE NEXT BUTTON
+========================= */
+
+.unique-next {
+
+    margin-top: 32px;
+
+    padding: 14px 22px;
+
+    background: transparent;
+
+    border: none;
+
+    border-bottom: 1px solid var(--purple);
+
+    color: #aaa;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    transition: all 0.35s ease;
+}
+
+.unique-next span {
+
+    display: inline-block;
+
+    color: var(--purple);
+
+    font-size: 20px;
+
+    margin-left: 12px;
+
+    transition: transform 0.35s ease;
+}
+
+.unique-next:hover {
+
+    color: white;
+
+    padding-left: 30px;
+
+    padding-right: 30px;
+
+    border-bottom-color: white;
+}
+
+.unique-next:hover span {
+
+    transform: translateX(8px);
+}
+
+
+/* =========================
+   FINAL PAGE
+========================= */
+
+.final-page {
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(168, 85, 247, 0.2),
+            transparent 50%
+        );
+}
+
+.final-content {
+
+    text-align: center;
+
+    animation: fadeUp 1s ease;
+}
+
+.final-bike {
+
+    font-size: 55px;
+
+    margin-bottom: 20px;
+}
+
+.final-content h1 {
+
+    font-size: clamp(45px, 8vw, 100px);
+
+    line-height: 0.9;
+
+    letter-spacing: -5px;
+}
+
+.final-sub {
+
+    color: var(--light-purple);
+
+    margin-top: 25px;
+
+    font-family: "DM Mono", monospace;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   MASSIVE PARTY BLAST
+========================= */
+
+#chaos-container {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 100;
+
+    overflow: hidden;
+}
+
+.chaos-item {
+
+    position: absolute;
+
+    font-size: 45px;
+
+    animation:
+        blast 1.8s
+        cubic-bezier(
+            0.1,
+            0.8,
+            0.2,
+            1
+        )
+        forwards;
+}
+
+
+/* SCREEN SHAKE */
+
+.shake {
+
+    animation:
+        screenShake 0.75s ease;
+}
+
+
+/* FLASH */
+
+.flash {
+
+    animation:
+        flashScreen 0.35s ease 3;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes partyIn {
+
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes emojiFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+@keyframes blast {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(0, 0)
+            scale(0.2)
+            rotate(0deg);
+    }
+
+    12% {
+
+        opacity: 1;
+
+        transform:
+            translate(0, 0)
+            scale(1.4)
+            rotate(20deg);
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translate(var(--x), var(--y))
+            scale(1.8)
+            rotate(var(--r));
+    }
+}
+
+
+@keyframes screenShake {
+
+    0% {
+        transform: translate(0);
+    }
+
+    15% {
+        transform: translate(-12px, 8px);
+    }
+
+    30% {
+        transform: translate(12px, -8px);
+    }
+
+    45% {
+        transform: translate(-9px, -6px);
+    }
+
+    60% {
+        transform: translate(9px, 7px);
+    }
+
+    75% {
+        transform: translate(-5px, 3px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+
+@keyframes flashScreen {
+
+    0% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(3);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .opening h1 {
+
+        letter-spacing: -3px;
+    }
+
+    .content h2 {
+
+        margin-bottom: 30px;
+    }
+
+    .childhood-photo {
+
+        width: 240px;
+    }
+
+    .childhood-photo img {
+
+        height: 260px;
+
+        object-fit: contain;
+    }
+
+    .photo-grid {
+
+        grid-template-columns: 1fr;
+
+        max-height: 58vh;
+
+        overflow-y: auto;
+    }
+
+    .photo-card {
+
+        height: 300px;
+    }
+
+    .profile-box p {
+
+        font-size: 12px;
+    }
+
+    .profile-box span {
+
+        width: 110px;
+    }
+
+    .message-box,
+    .big-message {
+
+        font-size: 15px;
+
+        line-height: 1.7;
+    }
+
+    .party-emojis {
+
+        font-size: 25px;
+
+        letter-spacing: 2px;
+
+        line-height: 1.8;
+    }
+
+    .chaos-item {
+
+        font-size: 32px;
+    }
+
+    .recent-caption {
+
+        font-size: 9px;
+    }
+}
