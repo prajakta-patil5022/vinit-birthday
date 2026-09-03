@@ -3,7 +3,6 @@
 ========================= */
 
 let currentPage = 1;
-
 const totalPages = 8;
 
 
@@ -13,29 +12,16 @@ const totalPages = 8;
 
 function showPage(pageNumber) {
 
-    document
-        .querySelectorAll(".page")
-        .forEach(page => {
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
 
-            page.classList.remove("active");
-
-        });
-
-
-    const page =
-        document.getElementById(
-            `page${pageNumber}`
-        );
-
+    const page = document.getElementById(`page${pageNumber}`);
 
     if (page) {
-
         page.classList.add("active");
-
         currentPage = pageNumber;
-
     }
-
 }
 
 
@@ -45,24 +31,17 @@ function showPage(pageNumber) {
 
 function openFile() {
 
-    document
-        .querySelectorAll(".page")
-        .forEach(page => {
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
 
-            page.classList.remove("active");
+    const partyPage = document.getElementById("partyPage");
 
-        });
-
-
-    document
-        .getElementById("partyPage")
-        .classList.add("active");
-
-
-    /* Small opening party blast */
+    if (partyPage) {
+        partyPage.classList.add("active");
+    }
 
     createPartyBlast(30);
-
 }
 
 
@@ -73,11 +52,8 @@ function openFile() {
 function nextPage() {
 
     if (currentPage < totalPages) {
-
         showPage(currentPage + 1);
-
     }
-
 }
 
 
@@ -88,11 +64,8 @@ function nextPage() {
 function previousPage() {
 
     if (currentPage > 1) {
-
         showPage(currentPage - 1);
-
     }
-
 }
 
 
@@ -100,25 +73,17 @@ function previousPage() {
    KEYBOARD NAVIGATION
 ========================= */
 
-document.addEventListener(
-    "keydown",
-    function(event) {
+document.addEventListener("keydown", function(event) {
 
-        if (event.key === "ArrowRight") {
-
-            nextPage();
-
-        }
-
-
-        if (event.key === "ArrowLeft") {
-
-            previousPage();
-
-        }
-
+    if (event.key === "ArrowRight") {
+        nextPage();
     }
-);
+
+    if (event.key === "ArrowLeft") {
+        previousPage();
+    }
+
+});
 
 
 /* =========================
@@ -127,14 +92,11 @@ document.addEventListener(
 
 function createPartyBlast(amount = 30) {
 
-    const container =
-        document.getElementById(
-            "chaos-container"
-        );
+    const container = document.getElementById("chaos-container");
 
+    if (!container) return;
 
     const emojis = [
-
         "🍻",
         "🥂",
         "🍺",
@@ -149,109 +111,44 @@ function createPartyBlast(amount = 30) {
         "✨",
         "💥",
         "🔫",
-        "🍻",
-        "🥂",
         "🎈",
         "⚡"
-
     ];
 
+    for (let i = 0; i < amount; i++) {
 
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
+        const item = document.createElement("div");
 
-        const item =
-            document.createElement("div");
-
-
-        item.className =
-            "chaos-item";
-
+        item.className = "chaos-item";
 
         item.innerText =
-            emojis[
-                Math.floor(
-                    Math.random()
-                    * emojis.length
-                )
-            ];
-
-
-        /* Start from center */
+            emojis[Math.floor(Math.random() * emojis.length)];
 
         item.style.left = "50%";
-
         item.style.top = "50%";
 
-
-        /* Random explosion direction */
-
         const x =
-            (
-                Math.random()
-                * 1800
-                - 900
-            ) + "px";
-
+            (Math.random() * 1800 - 900) + "px";
 
         const y =
-            (
-                Math.random()
-                * 1200
-                - 600
-            ) + "px";
-
+            (Math.random() * 1200 - 600) + "px";
 
         const rotation =
-            (
-                Math.random()
-                * 1000
-                - 500
-            ) + "deg";
+            (Math.random() * 1000 - 500) + "deg";
 
-
-        item.style.setProperty(
-            "--x",
-            x
-        );
-
-
-        item.style.setProperty(
-            "--y",
-            y
-        );
-
-
-        item.style.setProperty(
-            "--r",
-            rotation
-        );
-
+        item.style.setProperty("--x", x);
+        item.style.setProperty("--y", y);
+        item.style.setProperty("--r", rotation);
 
         item.style.animationDelay =
-            (
-                Math.random()
-                * 0.35
-            ) + "s";
-
+            (Math.random() * 0.35) + "s";
 
         container.appendChild(item);
 
-
-        setTimeout(
-            () => {
-
-                item.remove();
-
-            },
-            2300
-        );
-
+        setTimeout(() => {
+            item.remove();
+        }, 2300);
     }
-
 }
 
 
@@ -261,64 +158,23 @@ function createPartyBlast(amount = 30) {
 
 function celebrate() {
 
-    /* Screen shake */
-
-    document.body.classList.add(
-        "shake"
-    );
-
-
-    /* Bright flash */
-
-    document.body.classList.add(
-        "flash"
-    );
-
-
-    /* FIRST HUGE BLAST */
+    document.body.classList.add("shake");
+    document.body.classList.add("flash");
 
     createPartyBlast(150);
 
+    setTimeout(() => {
+        createPartyBlast(120);
+    }, 250);
 
-    /* SECOND BLAST */
+    setTimeout(() => {
+        createPartyBlast(100);
+    }, 600);
 
-    setTimeout(
-        () => {
+    setTimeout(() => {
 
-            createPartyBlast(120);
+        document.body.classList.remove("shake");
+        document.body.classList.remove("flash");
 
-        },
-        250
-    );
-
-
-    /* THIRD BLAST */
-
-    setTimeout(
-        () => {
-
-            createPartyBlast(100);
-
-        },
-        600
-    );
-
-
-    /* Remove effects */
-
-    setTimeout(
-        () => {
-
-            document.body.classList.remove(
-                "shake"
-            );
-
-            document.body.classList.remove(
-                "flash"
-            );
-
-        },
-        1500
-    );
-
+    }, 1500);
 }
