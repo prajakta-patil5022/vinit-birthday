@@ -886,3 +886,60 @@ body::before {
         margin-bottom: 25px;
     }
 }
+/* =========================
+   FINAL MOBILE FIX
+========================= */
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .page {
+        position: relative !important;
+        width: 100%;
+        min-height: 100vh;
+        height: auto !important;
+        overflow: visible !important;
+        padding-bottom: 60px;
+        box-sizing: border-box;
+    }
+
+    .page.active {
+        display: block !important;
+        height: auto !important;
+        min-height: 100vh;
+        overflow: visible !important;
+    }
+
+    .content {
+        width: 100%;
+        min-height: auto !important;
+        height: auto !important;
+        padding: 30px 25px 100px;
+        box-sizing: border-box;
+        overflow: visible !important;
+    }
+
+    .photo-grid {
+        margin-bottom: 25px;
+    }
+
+    .recent-caption {
+        margin-bottom: 30px;
+    }
+
+    .unique-next {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 9999 !important;
+        margin: 25px auto 20px;
+    }
+}
