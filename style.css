@@ -849,3 +849,40 @@ body::before {
         font-size: 9px;
     }
 }
+/* MOBILE PAGE FIX */
+
+@media (max-width: 600px) {
+
+    .page {
+        min-height: 100vh;
+        height: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 40px;
+    }
+
+    .content {
+        min-height: 100vh;
+        height: auto;
+        box-sizing: border-box;
+        padding-bottom: 100px;
+        overflow: visible;
+    }
+
+    .unique-next {
+        display: block;
+        position: relative;
+        z-index: 10;
+        margin: 30px auto 20px;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .photo-grid {
+        margin-bottom: 20px;
+    }
+
+    .recent-caption {
+        margin-bottom: 25px;
+    }
+}
